@@ -1,0 +1,32 @@
+[
+    {
+        "username":"usuario.loja",
+        "email":"usuario.loja@gmail.com",
+        "password": "123456",
+        "rbac":[
+            {
+                "_id": "5dcf61f0f1d90343963b2412",
+                "product": "TesteAuthorization",
+                "aplication": "AplicacaoTeste",
+                "roles": [
+                    "usuario/operador"
+                ]
+            }
+        ]
+    },
+    {
+        "username":"gerente",
+        "email":"gerente@gmail.com.br",
+        "password": "123456",
+        "rbac":[
+            {
+                "_id": "5dcf63b4719af744c85fe218",
+                "product": "TesteAuthorization",
+                "aplication": "AplicacaoTeste",
+                "roles": [
+                    "admin/menu"
+                ]
+            }
+        ]
+    }
+]

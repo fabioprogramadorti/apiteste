@@ -24,21 +24,25 @@ router.post("/register", auth, async (req, res) => {
   }
 });
 
-router.patch("/modify/:id", async (req, res) => {
-  
+router.put("/modify/:id", async (req, res) => {
+  try {
+    Product.findByIdAndUpdate({_id: req.params.id}, req.body).then(product => {
+      Product.findById({_id: req.params.id}).then(product =>{
+        res.status(200).send(product);
+      }).catch(err => {
+        res.status(400).send(error);
+      })
+    }).catch(err => {
+      res.send('error: ' + err)
+    })
+  } catch (error) {
+    res.status(400).send(error);
+  }  
 });
 
-router.put("/modifyAll/:id", async (req, res) => {
+router.patch("/modify/:id", async (req, res) => {
   try {
-    let productPut = {
-      _id: req.params.id,
-      productname: req.body.productname,
-      amount: req.body.amount,
-      description: req.body.description,
-      price: req.body.price,
-      creationdate: Date(),
-    };
-  Product.put(productPut).then(product => {
+    Product.findByIdAndUpdate(req.params.todoId,req.body,{new: true}).then(product => {
       res.status(200).send(product);
     }).catch(err => {
       res.send('error: ' + err)
@@ -66,7 +70,7 @@ router.get("/list", auth, async (req, res) => {
     if (!products){
         return res.status(400).send("Lista de produtos não encontrada.");
     } else {
-        res.status(400).send(products);
+        res.status(200).send(products);
     } 
   } catch (error) {
     res.status(400).send(error);

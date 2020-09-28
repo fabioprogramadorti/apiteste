@@ -32,7 +32,6 @@ const createUser = async (user) => {
     //let mongo = config.get("mongo");
     //await util.OpenConnection(mongo.server, mongo.database, mongo.user, mongo.pass);
     await util.OpenConnection("127.0.0.1", "apiteste", "", "");
-
     if (roles.length > 0) {
         await cleanRoles();
         for (let _role of roles) {

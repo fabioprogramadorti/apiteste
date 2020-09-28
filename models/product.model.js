@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema({
         maxlength: 50
     },
     amount: {
-        type: BigInt,
+        type: String,
         required: true,
         minlength: 0,
     },

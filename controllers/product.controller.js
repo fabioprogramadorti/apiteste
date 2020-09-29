@@ -66,11 +66,14 @@ router.delete("/delete/:id", async (req, res) => {
 
 router.get("/list", auth, async (req, res) => {
   try {
-    let products = await Product.find();
-    if (!products){
-        return res.status(400).send("Lista de produtos não encontrada.");
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    const skip = (page - 1) * limit;
+    let products = await Product.find().skip(skip).limit(limit);
+    if (products == null){
+        return res.status(400).send({error: 'error'});
     } else {
-        res.status(200).send(products);
+        res.status(200).send({status: 'success', products});
     } 
   } catch (error) {
     res.status(400).send(error);

@@ -27,6 +27,8 @@ function main(validate) {
     let mongo = config.get("mongo");
     util.OpenConnection(mongo.server, mongo.database, mongo.user, mongo.pass);
     app.use(express.json());
+
+    
     //use users route for api/users
     app.use("/api", routes);
 

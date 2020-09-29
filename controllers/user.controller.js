@@ -25,13 +25,14 @@ function normalizeRBAC(rbac) {
 }
 
 router.get("/menu/:atrributes", auth, async (req, res) => {
+  console.log(req.user);
   try {
 
     const _service = new service();
     await _service.setRole();
 
     let roles = normalizeRBAC(req.user.rbac); // todas as funções do usuário
-    let resurce = req.path.replace('/', '').split('/').shift(); // nome do recurso (neste caso o nome da api) 
+    let resurce = req.path.replace('/', '').split('/').shift(); // nome do recurso (neste caso o nome da api)
     let action = "read"; // ação
     let context = JSON.parse(req.headers['x-api-context']); //aplicacao do cliente
     let atrributes = [req.params.atrributes]; // nivel do menu
@@ -45,7 +46,6 @@ router.get("/menu/:atrributes", auth, async (req, res) => {
   } catch (error) {
     return res.status(500).send(`ERRO:${error.message}`);
   }
-
 });
 
 router.post("/roles", async (req, res) => {

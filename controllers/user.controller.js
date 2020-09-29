@@ -10,7 +10,7 @@ const config = require('config')
 router.get("/current", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');;
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
     return res.status(500).send(`ERRO:${error.message}`);
   }
@@ -38,9 +38,9 @@ router.get("/menu/:atrributes", auth, async (req, res) => {
 
     let _grant = await _service.grant(roles, action, context, resurce, atrributes);
     if (_grant) {
-      res.send('SUCESSO- Tem Permissão');
+      res.status(200).send({success: 'Access allowed'});
     } else {
-      return res.status(401).send('ERRO:Sem Menu para este usuário');
+      return res.status(401).send({error:'No Menu for this user'});
     }
   } catch (error) {
     return res.status(500).send(`ERRO:${error.message}`);
@@ -53,10 +53,10 @@ router.post("/roles", async (req, res) => {
     const { error } = validateUserRole(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     let user = await User.findById(req.body.id);
-    if (!user) return res.status(400).send("Usuário não reconhecido registrado.");
+    if (!user) return res.status(400).send({error:"Registered unrecognized user"});
     user.rbac = req.body.rbac
     await user.save();
-    return res.send({
+    return res.status(200).send({
       name: user.name,
       email: user.email
     });
@@ -70,7 +70,7 @@ router.post("/", async (req, res) => {
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     let user = await User.findOne({ email: req.body.email });
-    if (user) return res.status(400).send("Usuário já registrado.");
+    if (user) return res.status(400).send({error: 'Registered user'});
     user = new User({
       username: req.body.username,
       password: req.body.password,

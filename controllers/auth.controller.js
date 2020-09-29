@@ -12,10 +12,10 @@ router.post("/login", async (req, res) => {
         if (error) return res.status(400).send(error.details[0].message);
         const user = await User.findOne({ username: req.body.username });
         if(user == null){
-            returnWarning.mensagem = `ERRO:${'Usuário não existente na base de dados'}`;
+            returnWarning.mensagem = `ERRO:${'User does not exist in the database'}`;
             return res.status(400).send(returnWarning);
         } else {
-            return await bcrypt.compare(req.body.password, user.password) ? util.gerarToken(user, res) : res.status(400).send('falha de login');
+            return await bcrypt.compare(req.body.password, user.password) ? util.gerarToken(user, res) : res.status(400).send({error:'login failure'});
         }
     } catch (error) {
         res.status(error);

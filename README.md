@@ -95,12 +95,71 @@ Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcio
 somente para o usuário : gerente.
 
 
-Efetuar GET verificando os produtos inclusos na base de dados
+Efetuar POST verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
 Authorization : (Token gerado no momento do login)
 x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
 
-GET em http://35.245.70.233:3000/api/product/list. \
+POST em http://35.245.70.233:3000/api/product/register. \
+body -> JSON -> {
+	"productname": "Produto Teste",
+	"amount": "10",
+	"description": "Produto Teste Sistema Api",
+	"price": "100,00"
+}
 
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
+
+
+Efetuar PUT verificando a inclusão de novos produtos base de dados
+- No Header do Postman inclua:
+Authorization : (Token gerado no momento do login)
+x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
+
+PUT em http://35.245.70.233:3000/api/product/modify/5f73f0c811acaa529fe5597f. \
+body -> JSON -> {
+	"productname": "Produto Modificado",
+	"amount": "100",
+	"description": "Produto Teste Modificado",
+	"price": "999,99"
+}
+
+Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
+somente para o usuário : gerente.
+
+
+
+Efetuar PATCH verificando a inclusão de novos produtos base de dados
+- No Header do Postman inclua:
+Authorization : (Token gerado no momento do login)
+x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
+
+PATCH em http://35.245.70.233:3000/api/product/modify/5f73f0c811acaa529fe5597f. \
+body -> JSON -> {
+	"productname": "Produto Modificado novo"
+}
+
+Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
+somente para o usuário : gerente.
+
+
+Efetuar DELETE verificando a inclusão de novos produtos base de dados
+- No Header do Postman inclua:
+Authorization : (Token gerado no momento do login)
+x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
+
+PATCH em http://35.245.70.233:3000/api/product/delete/5f73f0c811acaa529fe5597f. \
+
+Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
+somente para o usuário : gerente.
+
+
+Efetuar GET verificando a inclusão de novos produtos base de dados
+- No Header do Postman inclua:
+Authorization : (Token gerado no momento do login)
+x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
+
+PATCH em http://35.245.70.233:3000/api/product/listById/5f73f09411acaa529fe5597e. \
+
+Obs: Tanto para o usuário: usuario.loja, quanto para o usuário : gerente. essa funcionalidade sera permitida

@@ -71,7 +71,7 @@ bcrypt - Isso nos ajudará a criar senhas de usuário com hash antes de armazen�
 role-acl - Uma ferramenta para controle de acesso baseado em funções, atributos e condições para Node.js que permite mesclar as melhores características de dois mundos o RBAC e o ABAC, implementando os principios basicos do RBAC mas também se concentrando no recurso, atributos e condições de ação (ABAC - Attribute-based Access Control).
 
 
-### Teste
+### Teste função Login
 
 Efetuar o POST fazendo o login do usuário, gerando um JWT válido:
 POST em http://localhost:3000/api/auth/login
@@ -84,6 +84,9 @@ O segundo login ("username":"gerente") dara acesso a todas as funcionalidades da
 
 É esperado receber o um JSON como retorno contendo o email do usuário, e no header do retorno um parâmetro chamado x-auth-token contendo o JWT do login, este deverá ser utilizado nas próximas requisições.
 
+
+### Teste função List
+
 Efetuar GET verificando os produtos inclusos na base de dados
 - No Header do Postman inclua:
 Authorization : (Token gerado no momento do login)
@@ -94,6 +97,10 @@ GET em http://35.245.70.233:3000/api/product/list. \
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
+É esperado receber o um JSON como retorno contendo o uma lista com todos os produtos existentes na base de dados
+
+
+### Teste função Register
 
 Efetuar POST verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
@@ -111,6 +118,10 @@ body -> JSON -> {
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
+É esperado receber o um JSON como retorno contendo o produdo incluso na base de dados e deu ID
+
+
+### Teste função Modify (PUT)
 
 Efetuar PUT verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
@@ -128,7 +139,10 @@ body -> JSON -> {
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
+É esperado receber o um JSON como retorno contendo o produto modificado na base de dados e deu ID
+(todos os dados devem ser modificados)
 
+### Teste função Modify (PATCH)
 
 Efetuar PATCH verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
@@ -143,6 +157,10 @@ body -> JSON -> {
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
+É esperado receber o um JSON como retorno contendo o produto modificado na base de dados e deu ID
+(apenas um dado por vês deve ser modificado)
+
+### Teste função Delete 
 
 Efetuar DELETE verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
@@ -154,6 +172,9 @@ PATCH em http://35.245.70.233:3000/api/product/delete/5f73f0c811acaa529fe5597f. 
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
+É esperado receber o um JSON como a confirmação de produto deletado da base de dados
+
+### Teste função ListById 
 
 Efetuar GET verificando a inclusão de novos produtos base de dados
 - No Header do Postman inclua:
@@ -163,3 +184,5 @@ x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
 PATCH em http://35.245.70.233:3000/api/product/listById/5f73f09411acaa529fe5597e. \
 
 Obs: Tanto para o usuário: usuario.loja, quanto para o usuário : gerente. essa funcionalidade sera permitida
+
+É esperado receber o um JSON como apenas um produto de acordo com o ID incluso da URI

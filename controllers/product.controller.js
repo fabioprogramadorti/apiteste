@@ -119,7 +119,7 @@ router.delete("/delete/:id", async (req, res) => {
     let _grant = await _service.grant(roles, action, context, resurce, atrributes);
     if(_grant){
       Product.findByIdAndDelete({_id: req.params.id}).then(product => {
-        res.status(200).send('Produto deletado do sistema');
+        res.status(200).send('Product successfully deleted');
       }).catch(err => {
         res.send('error: ' + err)
       })

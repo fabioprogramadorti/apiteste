@@ -1,16 +1,16 @@
 # API TESTE
-
 Bem vindo(a) ao sistema Teste Api
 
 Alem de objetivo ele é bem intuitivo, descrito em nodejs
 conta com a infraestrutura jwt, ou seja, uma implementação de segurança
 com token de acesso, niveis de acesso para diferentes usuários (cliente e gerente)
-bem como uma arquitetura que segue os melhores padrões de arquitetura REST,
-os primeiros passos para acessar essa aplicação são as seguintes:
+bem como uma arquitetura que segue os melhores padrões de arquitetura REST.
 
 ### Especificações técnicas para o uso da api
 
 No momento da criação de nossa POC foi utilizado o NodeJs na versão v12.13.0 e o npm na versão 6.12.0. Verifique se você instalou o Node.js no seu computador, caso contrário navegue para https://nodejs.org, faça o download e instale a versão mais recente.
+O deploy para testes de execução foi efetuado no ambiente Google Platform
+podendo acessado pelo IP: http://35.245.70.233:3000.
 
 ### Estrutura do projeto
 .\
@@ -74,7 +74,7 @@ role-acl - Uma ferramenta para controle de acesso baseado em funções, atributo
 ### Teste função Login
 
 Efetuar o POST fazendo o login do usuário, gerando um JWT válido:
-POST em http://localhost:3000/api/auth/login
+POST em http://35.245.70.233:3000/api/auth/login
 body -> JSON -> {"username":"usuario.loja", "password": "123456"}
 ou 
 body -> JSON -> {"username":"gerente", "password": "123456"}
@@ -97,7 +97,7 @@ GET em http://35.245.70.233:3000/api/product/list. \
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
-É esperado receber o um JSON como retorno contendo o uma lista com todos os produtos existentes na base de dados
+É esperado receber o um JSON como retorno contendo o uma lista com todos os produtos existentes na base de dados.
 
 
 ### Teste função Register
@@ -118,7 +118,7 @@ body -> JSON -> {
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
-É esperado receber o um JSON como retorno contendo o produdo incluso na base de dados e deu ID
+É esperado receber o um JSON como retorno contendo o produdo incluso na base de dados e deu ID.
 
 
 ### Teste função Modify (PUT)
@@ -140,7 +140,7 @@ Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcio
 somente para o usuário : gerente.
 
 É esperado receber o um JSON como retorno contendo o produto modificado na base de dados e deu ID
-(todos os dados devem ser modificados)
+(todos os dados devem ser modificados).
 
 ### Teste função Modify (PATCH)
 
@@ -158,7 +158,7 @@ Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcio
 somente para o usuário : gerente.
 
 É esperado receber o um JSON como retorno contendo o produto modificado na base de dados e deu ID
-(apenas um dado por vês deve ser modificado)
+(apenas um dado por vês deve ser modificado).
 
 ### Teste função Delete 
 
@@ -172,7 +172,7 @@ PATCH em http://35.245.70.233:3000/api/product/delete/5f73f0c811acaa529fe5597f. 
 Obs: Para o usuário: usuario.loja, o acesso não será permitido à essa funcionalidade
 somente para o usuário : gerente.
 
-É esperado receber o um JSON como a confirmação de produto deletado da base de dados
+É esperado receber o um JSON como a confirmação de produto deletado da base de dados.
 
 ### Teste função ListById 
 
@@ -183,6 +183,6 @@ x-api-context : "{\"aplication\":\"AplicacaoTeste\"}"
 
 PATCH em http://35.245.70.233:3000/api/product/listById/5f73f09411acaa529fe5597e. \
 
-Obs: Tanto para o usuário: usuario.loja, quanto para o usuário : gerente. essa funcionalidade sera permitida
+Obs: Tanto para o usuário: usuario.loja, quanto para o usuário : gerente. essa funcionalidade sera permitida.
 
-É esperado receber o um JSON como apenas um produto de acordo com o ID incluso da URI
+É esperado receber o um JSON como apenas um produto de acordo com o ID incluso da URI.
